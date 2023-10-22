@@ -17,13 +17,14 @@ return new class extends Migration
 
             $table->string('branch');
             $table->string('office_name');
-            $table->string('location_address');
-            $table->string('mailing_address');
-            $table->string('main_phone');
-            $table->string('fax_line');
-            $table->string('company_email');
+            $table->string('location_address')->nullable();
+            $table->string('mailing_address')->nullable();
+            $table->string('main_phone')->nullable();
+            $table->string('fax_line')->nullable();
+            $table->string('company_email')->nullable();
 
             $table->timestamps();
+            $table->softDeletes();
 
             $table->index('branch');
             $table->index('office_name');

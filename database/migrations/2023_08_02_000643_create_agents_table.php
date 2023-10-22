@@ -17,15 +17,19 @@ return new class extends Migration
 
             $table->unsignedInteger('office_id');
             $table->foreign('office_id')->references('id')->on('offices');
+
+            $table->unsignedInteger('user_id')->unique();
+            $table->foreign('user_id')->references('id')->on('users');
+
             $table->string('first_name');
             $table->string('last_name');
-            $table->string('mobile_phone');
-            $table->string('email');
+            $table->string('mobile_phone')->nullable();
+            $table->string('email')->nullable();
             
             $table->timestamps();
+            $table->softDeletes();
 
-            $table->index('office_id');
-            $table->index(['last_name', 'first_name']);
+            $table->index(['last_name', 'first_name'], 'agent_name_sort');
         });
     }
 
